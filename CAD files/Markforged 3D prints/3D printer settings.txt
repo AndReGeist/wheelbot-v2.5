@@ -1,0 +1,9 @@
+3D printer used: Markforged Onyx One
+Material: Onyx
+Layer height: 0.2 mm
+Use default settings for all else.
+
+See the following links for tips on printing:
+https://markforged.com/resources/learn/design-for-additive-manufacturing-plastics-composites/3d-printing-strategies-for-composites/composites-3d-printing-design-tips
+
+https://static.markforged.com/downloads/CompositesDesignGuide.pdf
