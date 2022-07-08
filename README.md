@@ -7,12 +7,12 @@ Project page:  [https://sites.google.com/view/wheelbot/start](https://sites.goog
 ## /CAD files
 Contains the CAD files of the Wheelbot v2.5 as stl-files.
 
-3D printer used: Markforged Onyx One
-Material: Onyx
-Layer height: 0.2 mm
-Use default settings for all else.
-See the following links for tips on printing:
-https://markforged.com/resources/learn/design-for-additive-manufacturing-plastics-composites/3d-printing-strategies-for-composites/composites-3d-printing-design-tips
+3D printer used: Markforged Onyx One <br/>
+Material: Onyx <br/>
+Layer height: 0.2 mm <br/>
+Use default settings for all else. <br/>
+See the following links for tips on printing: <br/>
+https://markforged.com/resources/learn/design-for-additive-manufacturing-plastics-composites/3d-printing-strategies-for-composites/composites-3d-printing-design-tips <br/>
 https://static.markforged.com/downloads/CompositesDesignGuide.pdf
 
 The folder also contains the technical drawing for the cut copper rings forming the reaction wheel and the pdf *"wheelbot v2.5 assembly view.pdf"* that lets you interact with the complete Wheelbot's assembly (requires Adobe Acrobate reader).
@@ -39,7 +39,7 @@ save('EQS_matrices.mat', 'M', 'RHS')
 ## /simulation/simulink-model
 Contains the simulink model used to tune the estimator and LQR controller. Recommended matlab version is R2020a.
 
-The file *"s00_designLQR"* contains all settings of the simulation includng the exact estimates for the mass and inertia of the Wheelbot v2.5 which we obtained from CAD.
+The file *"s00_config"* contains the simulation settings including the exact estimates for the mass and inertia of the Wheelbot v2.5 which we obtained from CAD.
 
 Before running *"s01_unicycle.slx"*, you need to run *"s00_designLQR"*.
 
@@ -47,10 +47,10 @@ Before running *"s01_unicycle.slx"*, you need to run *"s00_designLQR"*.
 Contains the firmware required to run Wheelbot v2.5
 
 ### /firmware/M2-on-wheelbot
-Contains the firmware that runs on the Maevarm M2 that is attached to the motherboard of the Wheelbot.
+Contains the firmware that runs on a Maevarm M2 that is attached to the motherboard of the Wheelbot.
 
 ### /firmware/M2-wifi-dongle
-Contains the firmware that runs on the Maevarm M2 that is connected to the PC and that handles the wifi communication with the Wheelbot.
+Contains the firmware that runs on a Maevarm M2 being connected to a PC and that handles the wifi communication with the Wheelbot.
 
 ### /firmware/computer-python-interface
 Python program running on Ubuntu 18.04 LTS collecting incoming data/outgoing commands from/to the wifi dongle.
