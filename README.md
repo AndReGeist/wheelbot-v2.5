@@ -4,7 +4,7 @@ This repository contains all files required to build a Wheelbot v2.5.
 
 Project page:  [https://sites.google.com/view/wheelbot/start](https://sites.google.com/view/wheelbot/start)
 
-## [/CAD files]("/CAD files")
+## [/CAD files](/CAD files)
 Contains the CAD files of the Wheelbot v2.5 as stl-files.
 
 3D printer used: Markforged Onyx One <br/>
