@@ -124,6 +124,6 @@ R_2^T R_1^T e_3
 \end{array}\right].
 ```
 
-Importantly, **our results on tilt estimation using accelerometers** as depicted in Figure 10 **are not affected by this error**. In the first experiment (Figure 10, left) the robot's tilt angles were kept at zero. In the second experiment (Figure 10, right), $q_1 \approx 0$ such that $\tan(q_1) \approx 0$. In turn, both transforms deviated only marginally from each other in both experiments.
+Importantly, **our results on tilt estimation using accelerometers** as depicted in Figure 10 **are not affected by this error**. In the first experiment (Figure 10, left) the robot's tilt angles were kept at zero. In the second experiment (Figure 10, right), $q_1 \approx 0$ such that $\tan(q_1) \approx q_1$. In turn, both transforms deviated only marginally from each other in both experiments.
 
 We added a [Jupyter notebook](https://github.com/AndReGeist/wheelbot-v2.5/blob/main/erratum_bodyrate_transform.ipynb) to the projects Github repository detailing the calculation of the transform from body rates to Euler rates. 
