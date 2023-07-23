@@ -55,3 +55,66 @@ Contains the firmware that runs on a Maevarm M2 being connected to a PC and that
 ### /firmware/computer-python-interface
 Python program running on Ubuntu 18.04 LTS collecting incoming data/outgoing commands from/to the wifi dongle.
 
+# Erratum
+In the initial publication, an erroneous statement was made concerning Equation (3), where the transform from averaged body rates ${}^{\text{B}}\omega_i$ to Euler rates was incorrectly denoted as
+$$
+\left[\begin{array}{c}
+\dot{q}_{1, \mathrm{G}} \\
+\dot{q}_{2, \mathrm{G}} \\
+\dot{q}_{3, \mathrm{G}}
+\end{array}\right]=\left[\begin{array}{c}
+e_1^{\mathrm{T}} R_2 \\
+e_2^{\mathrm{T}} \\
+e_3^{\mathrm{T}} R_1 R_2
+\end{array}\right] \sum_{k=1}^4 \frac{{ }^B \omega_i(k)}{4},
+$$
+corresponding to
+$$
+\left[\begin{array}{c}
+\dot{q}_{1, \mathrm{G}} \\
+\dot{q}_{2, \mathrm{G}} \\
+\dot{q}_{3, \mathrm{G}}
+\end{array}\right]=\left[\begin{array}{c}
+R_2^T e_1 &
+e_2 &
+R_2^T R_1^T e_3
+\end{array}\right]^{\top} \sum_{i=1}^4 \frac{{ }^B \omega_i(k)}{4}.
+$$
+However, the correct transform from averaged body rates ${}^{\text{B}}\omega_i$ to Euler rates is
+$$
+\left[\begin{array}{c}
+\dot{q}_{1, \mathrm{G}} \\
+\dot{q}_{2, \mathrm{G}} \\
+\dot{q}_{3, \mathrm{G}}
+\end{array}\right]=\left[\begin{array}{c}
+R_2^T e_1 &
+e_2 &
+R_2^T R_1^T e_3
+\end{array}\right]^{-1} \sum_{i=1}^4 \frac{{ }^B \omega_i(k)}{4}.
+$$
+While we implemented the faulty transform in the Wheelbot's state estimations routine (see [main.c](https://github.com/AndReGeist/wheelbot-v2.5/blob/main/firmware/M2-on-wheelbot/src/main.c), Line 340),  the error had not been noticed during experimentation as the robot remained close to its upright equilibrium. In turn, $q_1$ and $q_2$ remained near zero such that both transforms become almost identical, writing
+$$
+\left[\begin{array}{c}
+R_2^T e_1 &
+e_2 &
+R_2^T R_1^T e_3
+\end{array}\right]^{\top} =  \left[\begin{array}{c}
+\cos(q_2) & 0 & \sin(q_2) \\
+0 & 1 & 0 \\
+-\cos(q_1) \sin(q_2) & \sin(q_1) & \cos(q_1) \cos(q_2)
+\end{array}\right],
+$$
+$$
+\left[\begin{array}{c}
+R_2^T e_1 &
+e_2 &
+R_2^T R_1^T e_3
+\end{array}\right]^{-1} = \left[\begin{array}{c}
+ \cos(q_2) & 0 & \sin(q_2) \\
+ \tan(q_1) \sin(q_2) & 1 & -\tan(q_1) \cos(q_2) \\ 
+ -\sin(q_2) / \cos(q_1) & 0 & \cos(q_2) / \cos(q_1)
+\end{array}\right].
+$$
+Importantly, **our results on tilt estimation using accelerometers** as depicted in Figure 10 **are not affected by this error**. In the first experiment (Figure 10, left) the robot's tilt angles were kept at zero. In the second experiment (Figure 10, right), $q_1 \approx 0$. In turn, both transforms deviated only marginally from each other in both experiments.
+
+We added a [Jupyter notebook](https://github.com/AndReGeist/wheelbot-v2.5/blob/main/erratum_bodyrate_transform.ipynb) to the projects Github repository detailing the caluclation of the transform from body rates to Euler rates. 
